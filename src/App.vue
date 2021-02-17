@@ -26,8 +26,8 @@
       </div>
       <div class="footer-right">
         <button class="definition" v-if="this.answered" @click="handleClickShowAnswerDescription()">Açıklama</button> 
-        <button v-if="!this.answered" @click="handleRandomizeQuestion()">Atla</button> 
-        <button v-if="this.answered" @click="handleRandomizeQuestion()">Devam Et <b-icon icon="arrow-right-short"></b-icon></button> 
+        <button v-if="!this.answered" @click="handleRandomizeQuestion()">Atla <b-icon icon="skip-forward"/></button> 
+        <button v-if="this.answered" @click="handleRandomizeQuestion()">Devam Et <b-icon icon="arrow-right-short"/></button> 
       </div> 
     </footer>
     <div class="modal fade" id="answerDescription" tabindex="-1" aria-labelledby="answerDescriptionLabel" aria-hidden="true">
