@@ -31,6 +31,11 @@
 
 <script>
 import { mapActions } from "vuex";
+
+const codeInnerReplaceFunction = x => `<code class="code-inner">${x.replace(/`/g, '')}</code>`
+const italicReplaceFunction = x => `<em>${x.replace(/_/g, '')}</em>`
+const strongReplaceFunction = x => `<strong>${x.replace(/\*/g, '')}</strong>`
+
 export default {
   name: 'Question',
   data() {
@@ -91,7 +96,16 @@ export default {
       return this.data.answer
     },
     answerDescription() {
+      const backtickRexExp = /`(.*?)`/g
+      const undescoreRexExp = /_(.*?)_/g
+      const strongRexExp = /\*\*(.*?)\*\*/g
+      
+      const newLineRexExp = /\n\n(.*?)/g
       return this.data.answerDescription
+        .replace(backtickRexExp, codeInnerReplaceFunction)
+        .replace(undescoreRexExp, italicReplaceFunction)
+        .replace(strongRexExp, strongReplaceFunction)
+        .replace(newLineRexExp, '<br>')
     }
   }
 }
@@ -194,5 +208,10 @@ export default {
   margin-bottom: 32px;
   color: #333;
   /* display: none; */
+}
+
+.answer-description img{
+  display: block;
+  margin: 16px 0;
 }
 </style>
