@@ -11,7 +11,14 @@
     </div>
     <footer class="footer">
       <div class="footer-left">
-
+        <div class="results wrong">
+          <b-icon icon="x-circle-fill"></b-icon>
+          <span v-text="this.quizResult.wrongs"></span>
+        </div>
+        <div class="results right">
+          <b-icon icon="check-circle-fill"></b-icon>
+          <span v-text="this.quizResult.rights"></span>
+        </div>
       </div>
       <div class="footer-right">
         <button class="definition" v-if="this.answered" data-toggle="modal" data-target="#answerDescription">Açıklama</button> 
@@ -50,7 +57,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['stage', 'questions', 'activeQuestion'])
+    ...mapState(['stage', 'questions', 'activeQuestion', 'quizResult'])
   },
   created() {
     this.getQuestions();
@@ -190,5 +197,33 @@ code.code-inner{
   background: transparent;
   color: #1c2950;
   font-weight: 500;
+}
+
+.footer .results{
+  display: flex;
+  align-items: center;
+  padding: 2px 8px;
+  // background: #8f9abb;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+.footer .results svg{
+  width: 20px;
+  height: 20px;
+  fill: #eee;
+}
+
+.footer .results span{
+  color: #eee;
+  margin-left: 8px;
+}
+
+.footer .results.right svg{
+  fill: #4caf50;
+}
+
+.footer .results.wrong svg{
+  fill: #f44336;
 }
 </style>

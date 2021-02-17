@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: 'Question',
   data() {
@@ -42,6 +43,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['increaseQuizResultWrongs', 'increaseQuizResultRights']),
     handleOptionClick(optionLetter, event) {
       if (this.answered) {
         return
@@ -50,8 +52,10 @@ export default {
       this.$emit('answered')
       if (this.data.answer == optionLetter) {
         event.target.classList.add('answer-right')
+        this.increaseQuizResultRights()
       } else {
         event.target.classList.add('answer-wrong')
+        this.increaseQuizResultWrongs()
         document.querySelector(`[data-option-value="${this.data.answer}"] label`).classList.add('answer-right')
       }
     }

@@ -8,20 +8,30 @@ const store = new Vuex.Store({
     stage: 'start',
     selectedLanguage: {},
     questions: [],
-    activeQuestion: {}
+    activeQuestion: {},
+    quizResult: {}
   }),
   mutations: {
     setStage(state, stage) {
       state.stage = stage
     },
     setSelectedLanguage(state, language) {
-        state.selectedLanguage = language
+      state.selectedLanguage = language
     },
     setQuestions(state, questions) {
-        state.questions = questions
+      state.questions = questions
     },
     setActiveQuestion(state, question) {
-        state.activeQuestion = question
+      state.activeQuestion = question
+    },
+    setQuizResult(state, result) {
+      state.quizResult = result
+    },
+    increaseQuizResultWrongs(state) {
+      state.quizResult.wrongs++
+    },
+    increaseQuizResultRights(state) {
+      state.quizResult.rights++
     }
   },
   actions: {
@@ -36,6 +46,15 @@ const store = new Vuex.Store({
     },
     setActiveQuestion({commit}, question) {
       commit('setActiveQuestion', question)
+    },
+    setQuizResult({commit}, result) {
+      commit('setQuizResult', result)
+    },
+    increaseQuizResultWrongs({commit}) {
+      commit('increaseQuizResultWrongs')
+    },
+    increaseQuizResultRights({commit}) {
+      commit('increaseQuizResultRights')
     },
     randomizeQuestion({commit}) {
       const max = this.state.questions.length;

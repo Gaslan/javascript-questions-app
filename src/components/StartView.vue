@@ -20,10 +20,14 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['setStage', 'randomizeQuestion']),
+    ...mapActions(['setStage', 'randomizeQuestion', 'setQuizResult']),
      startQuiz() {
        this.randomizeQuestion()
        this.setStage('started')
+       this.setQuizResult({
+         rights: 0,
+         wrongs: 0
+       })
      }
   },
 }
