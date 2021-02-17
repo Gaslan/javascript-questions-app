@@ -23,7 +23,9 @@
       </ul>
     </div>
     <p v-text="answer" class="d-none"></p>
-    <p v-if="this.answered" v-text="answerDescription"></p>
+    <div v-if="this.showAnswerDescription" class="answer-description">
+      <div v-html="answerDescription"></div>
+    </div>
   </div>
 </template>
 
@@ -40,6 +42,11 @@ export default {
     data: {
       type: Object,
       required: true
+    },
+    showAnswerDescription: {
+      type: Boolean,
+      required: true,
+      default: false
     }
   },
   methods: {
@@ -179,5 +186,13 @@ export default {
 .options .option-letter{
   font-size: 24px;
   font-weight: 700;
+}
+
+.answer-description{
+  padding: 16px;
+  background: #e5e6ea;
+  margin-bottom: 32px;
+  color: #333;
+  /* display: none; */
 }
 </style>

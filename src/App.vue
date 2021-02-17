@@ -5,7 +5,11 @@
     <div v-if="this.stage == 'started'" class="main-content container">
       <div class="row">
         <div class="col-12">
-          <Question :data="this.activeQuestion" :key="this.activeQuestion.number" v-on:answered="handleAnswered" />
+          <Question 
+            :data="this.activeQuestion" 
+            :key="this.activeQuestion.number" 
+            :showAnswerDescription="this.showAnswerDescription"
+            v-on:answered="handleAnswered" />
         </div>
       </div>
     </div>
@@ -21,9 +25,9 @@
         </div>
       </div>
       <div class="footer-right">
-        <button class="definition" v-if="this.answered" data-toggle="modal" data-target="#answerDescription">Açıklama</button> 
+        <button class="definition" v-if="this.answered" @click="handleClickShowAnswerDescription()">Açıklama</button> 
         <button v-if="!this.answered" @click="handleRandomizeQuestion()">Atla</button> 
-        <button v-if="this.answered" @click="handleRandomizeQuestion()">Devam Et</button> 
+        <button v-if="this.answered" @click="handleRandomizeQuestion()">Devam Et <b-icon icon="arrow-right-short"></b-icon></button> 
       </div> 
     </footer>
     <div class="modal fade" id="answerDescription" tabindex="-1" aria-labelledby="answerDescriptionLabel" aria-hidden="true">
@@ -53,7 +57,8 @@ export default {
   },
   data() {
     return {
-      answered: false
+      answered: false,
+      showAnswerDescription: false
     }
   },
   computed: {
@@ -70,6 +75,7 @@ export default {
     handleRandomizeQuestion() {
       this.randomizeQuestion()
       this.answered = false
+      this.showAnswerDescription = false
       window.scrollTo({
         top: 0
       })
@@ -133,6 +139,9 @@ export default {
         .trim()
         .replace(backtickRexExp, x => `<code class="code-inner">${x.replace(/`/g, '')}</code>`)
       return {optionLetter, optionBody}
+    },
+    handleClickShowAnswerDescription() {
+      this.showAnswerDescription = true
     }
   }
 }
