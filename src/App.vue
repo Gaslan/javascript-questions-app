@@ -157,10 +157,10 @@ code.code-inner{
   right: 0;
   height: 50px;
   width: 100%;
-  background: #e9eaed;
+  background: #44578e;
   display: flex;
   align-items: center;
-  border-top: 1px solid #c3c4c7;
+  border-top: 1px solid #2a3a68;
   padding: 0 16px;
   // box-shadow: 0 -1px 6px 2px #d3d5da;
 }
@@ -176,11 +176,11 @@ code.code-inner{
 }
 
 .footer button{
-  border: 1px solid #d4d6e1;
-  background: #fff;
+  border: 1px solid transparent;
+  background: #8f9abb;
   border-radius: 4px;
   padding: 4px 12px;
-  color: #2196f3;
+  color: #2f4175;
   white-space: nowrap;
   font-weight: 500;
 }
@@ -188,7 +188,7 @@ code.code-inner{
 .footer button.definition{
   border-width: 0;
   background: transparent;
-  color: #9e9e9e;
+  color: #1c2950;
   font-weight: 500;
 }
 </style>
